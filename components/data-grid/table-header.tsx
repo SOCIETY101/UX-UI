@@ -18,6 +18,7 @@ type DataGridTableHeaderProps<ColumnId extends string> = {
     event: React.PointerEvent<HTMLButtonElement>,
     columnId: ColumnId
   ) => void
+  mobileCardLayout: boolean
 }
 
 export function DataGridTableHeader<ColumnId extends string>({
@@ -27,6 +28,7 @@ export function DataGridTableHeader<ColumnId extends string>({
   someVisibleRowsSelected,
   onToggleAllRows,
   onResizeStart,
+  mobileCardLayout,
 }: DataGridTableHeaderProps<ColumnId>) {
   return (
     <>
@@ -42,7 +44,7 @@ export function DataGridTableHeader<ColumnId extends string>({
 
       <TableHeader className="bg-background">
         <TableRow className="bg-muted/20 hover:bg-muted/20">
-          <TableHead className="h-10 w-10 border-r bg-muted/20 px-0 text-center">
+          <TableHead className="sticky top-0 z-20 h-10 w-10 border-r bg-muted px-0 text-center shadow-[0_1px_0_var(--border)]">
             <Checkbox
               aria-label="Select all rows"
               checked={allVisibleRowsSelected}
@@ -57,6 +59,7 @@ export function DataGridTableHeader<ColumnId extends string>({
               column={column}
               width={columnWidths[column.id]}
               onResize={onResizeStart}
+              mobileCardLayout={mobileCardLayout}
             />
           ))}
         </TableRow>

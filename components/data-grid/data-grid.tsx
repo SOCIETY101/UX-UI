@@ -54,6 +54,7 @@ export function DataGrid<Row extends DataGridRowBase, ColumnId extends string>({
   stickySummaryFooter = false,
   fillAvailableHeight = false,
   tableContainerClassName,
+  mobileCardLayout = false,
   onRowsChange,
 }: DataGridProps<Row, ColumnId>) {
   const [showSummaries, setShowSummaries] = React.useState(true)
@@ -178,6 +179,10 @@ export function DataGrid<Row extends DataGridRowBase, ColumnId extends string>({
   }, [])
 
   const selectedRowCount = selectedRowIds.length
+  const selectedRowIdSet = React.useMemo(
+    () => new Set(selectedRowIds),
+    [selectedRowIds]
+  )
   const allVisibleRowsSelected =
     rows.length > 0 && selectedRowCount === rows.length
   const someVisibleRowsSelected =
@@ -288,7 +293,7 @@ export function DataGrid<Row extends DataGridRowBase, ColumnId extends string>({
 
               setDrawerCell(cell)
             }}
-            selectedRowIds={selectedRowIds}
+            selectedRowIdSet={selectedRowIdSet}
             allVisibleRowsSelected={allVisibleRowsSelected}
             someVisibleRowsSelected={someVisibleRowsSelected}
             onToggleRowSelection={toggleRowSelection}
@@ -297,6 +302,7 @@ export function DataGrid<Row extends DataGridRowBase, ColumnId extends string>({
             renderSummary={renderSummary}
             stickySummaryFooter={stickySummaryFooter}
             tableContainerClassName={tableContainerClassName}
+            mobileCardLayout={mobileCardLayout}
             isEmptyValue={isEmptyValue}
             onResizeStart={beginResize}
           />

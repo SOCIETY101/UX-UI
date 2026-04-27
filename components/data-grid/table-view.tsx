@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { Table } from "@/components/ui/table"
+import { cn } from "@/lib/utils"
 import {
   DataGridSummaryFooter,
   DataGridTableBody,
@@ -40,7 +41,7 @@ type DataGridTableViewProps<
   canOpenDrawer: (columnId: ColumnId) => boolean
   renderCell: (row: Row, column: DataGridColumn<ColumnId>) => React.ReactNode
   onOpenDrawer: (cell: EditingCell<ColumnId>) => void
-  selectedRowIds: string[]
+  selectedRowIdSet: Set<string>
   allVisibleRowsSelected: boolean
   someVisibleRowsSelected: boolean
   onToggleRowSelection: (rowId: string, checked: boolean) => void
@@ -52,6 +53,7 @@ type DataGridTableViewProps<
   ) => React.ReactNode
   stickySummaryFooter: boolean
   tableContainerClassName?: string
+  mobileCardLayout: boolean
   isEmptyValue: (value: React.ReactNode) => boolean
   onResizeStart: (
     event: React.PointerEvent<HTMLButtonElement>,
@@ -82,7 +84,7 @@ export function DataGridTableView<
   canOpenDrawer,
   renderCell,
   onOpenDrawer,
-  selectedRowIds,
+  selectedRowIdSet,
   allVisibleRowsSelected,
   someVisibleRowsSelected,
   onToggleRowSelection,
@@ -91,6 +93,7 @@ export function DataGridTableView<
   renderSummary,
   stickySummaryFooter,
   tableContainerClassName,
+  mobileCardLayout,
   isEmptyValue,
   onResizeStart,
   draggingColumnId,
@@ -98,7 +101,7 @@ export function DataGridTableView<
   return (
     <Table
       ref={tableRef}
-      className="table-fixed"
+      className={cn("table-fixed", mobileCardLayout && "data-grid--mobile-cards")}
       containerClassName={tableContainerClassName}
       style={{ width: `max(100%, ${gridMinWidth}px)` }}
     >
@@ -109,6 +112,7 @@ export function DataGridTableView<
         someVisibleRowsSelected={someVisibleRowsSelected}
         onToggleAllRows={onToggleAllRows}
         onResizeStart={onResizeStart}
+        mobileCardLayout={mobileCardLayout}
       />
 
       <DataGridTableBody
@@ -127,10 +131,11 @@ export function DataGridTableView<
         canOpenDrawer={canOpenDrawer}
         renderCell={renderCell}
         onOpenDrawer={onOpenDrawer}
-        selectedRowIds={selectedRowIds}
+        selectedRowIdSet={selectedRowIdSet}
         onToggleRowSelection={onToggleRowSelection}
         columnWidths={columnWidths}
         draggingColumnId={draggingColumnId}
+        mobileCardLayout={mobileCardLayout}
       />
 
       <DataGridSummaryFooter
@@ -142,6 +147,7 @@ export function DataGridTableView<
         columnWidths={columnWidths}
         draggingColumnId={draggingColumnId}
         isEmptyValue={isEmptyValue}
+        mobileCardLayout={mobileCardLayout}
       />
     </Table>
   )

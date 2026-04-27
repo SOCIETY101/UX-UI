@@ -38,10 +38,11 @@ type DataGridTableBodyProps<
   canOpenDrawer: (columnId: ColumnId) => boolean
   renderCell: (row: Row, column: DataGridColumn<ColumnId>) => React.ReactNode
   onOpenDrawer: (cell: EditingCell<ColumnId>) => void
-  selectedRowIds: string[]
+  selectedRowIdSet: Set<string>
   onToggleRowSelection: (rowId: string, checked: boolean) => void
   columnWidths: Record<ColumnId, number>
   draggingColumnId: ColumnId | null
+  mobileCardLayout: boolean
 }
 
 export function DataGridTableBody<
@@ -63,19 +64,23 @@ export function DataGridTableBody<
   canOpenDrawer,
   renderCell,
   onOpenDrawer,
-  selectedRowIds,
+  selectedRowIdSet,
   onToggleRowSelection,
   columnWidths,
   draggingColumnId,
+  mobileCardLayout,
 }: DataGridTableBodyProps<Row, ColumnId>) {
   return (
     <TableBody>
       {visibleRows.map((row, rowIndex) => (
         <TableRow key={row.id}>
-          <TableCell className="h-10 border-r px-0 text-center">
+          <TableCell
+            data-grid-select-cell="true"
+            className="h-10 border-r px-0 text-center"
+          >
             <Checkbox
               aria-label={`Select ${getRowLabel(row)}`}
-              checked={selectedRowIds.includes(row.id)}
+              checked={selectedRowIdSet.has(row.id)}
               onCheckedChange={(checked) =>
                 onToggleRowSelection(row.id, checked === true)
               }
@@ -93,6 +98,10 @@ export function DataGridTableBody<
               <TableCell
                 key={`${row.id}-${column.id}`}
                 data-grid-cell="true"
+                data-grid-primary-cell={
+                  mobileCardLayout && colIndex === 0 ? "true" : undefined
+                }
+                data-label={column.label}
                 data-row-index={rowIndex}
                 data-col-index={colIndex}
                 tabIndex={isEditing ? -1 : 0}

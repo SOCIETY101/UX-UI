@@ -80,6 +80,7 @@ export type DataGridProps<
   stickySummaryFooter?: boolean
   fillAvailableHeight?: boolean
   tableContainerClassName?: string
+  mobileCardLayout?: boolean
   onRowsChange?: (rows: Row[]) => void
 }
 

@@ -23,6 +23,7 @@ type DataGridSummaryFooterProps<
   columnWidths: Record<ColumnId, number>
   draggingColumnId: ColumnId | null
   isEmptyValue: (value: React.ReactNode) => boolean
+  mobileCardLayout: boolean
 }
 
 export function DataGridSummaryFooter<
@@ -37,8 +38,9 @@ export function DataGridSummaryFooter<
   columnWidths,
   draggingColumnId,
   isEmptyValue,
+  mobileCardLayout,
 }: DataGridSummaryFooterProps<Row, ColumnId>) {
-  if (!showSummaries || !renderSummary) return null
+  if (!showSummaries || !renderSummary || mobileCardLayout) return null
 
   const stickyCellClassName = stickySummaryFooter
     ? "sticky bottom-0 z-10 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90"

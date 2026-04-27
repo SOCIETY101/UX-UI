@@ -17,6 +17,7 @@ type SortableHeaderCellProps<ColumnId extends string> = {
     event: React.PointerEvent<HTMLButtonElement>,
     columnId: ColumnId
   ) => void
+  mobileCardLayout?: boolean
 }
 
 type SortableColumnOptionItemProps<ColumnId extends string> = {
@@ -96,10 +97,11 @@ export function SortableHeaderCell<ColumnId extends string>({
   column,
   width,
   onResize,
+  mobileCardLayout = false,
 }: SortableHeaderCellProps<ColumnId>) {
   return (
     <TableHead
-      className="group/column-head relative h-10 overflow-hidden border-r bg-muted/20 px-2 text-sm"
+      className="group/column-head sticky top-0 z-20 h-10 overflow-hidden border-r bg-muted px-2 text-sm shadow-[0_1px_0_var(--border)]"
       style={{
         width,
         minWidth: width,
@@ -109,14 +111,16 @@ export function SortableHeaderCell<ColumnId extends string>({
       <div className="flex h-full min-w-0 items-center overflow-hidden">
         <ColumnHead icon={column.icon} label={column.label} />
       </div>
-      <button
-        type="button"
-        aria-label={`Resize ${column.label} column`}
-        className="absolute top-0 right-0 flex h-full w-3 cursor-col-resize items-center justify-center text-border transition-colors hover:text-muted-foreground"
-        onPointerDown={(event) => onResize(event, column.id)}
-      >
-        <IconSeparatorVertical className="size-4 opacity-0" />
-      </button>
+      {mobileCardLayout ? null : (
+        <button
+          type="button"
+          aria-label={`Resize ${column.label} column`}
+          className="absolute top-0 right-0 flex h-full w-3 cursor-col-resize items-center justify-center text-border transition-colors hover:text-muted-foreground"
+          onPointerDown={(event) => onResize(event, column.id)}
+        >
+          <IconSeparatorVertical className="size-4 opacity-0" />
+        </button>
+      )}
     </TableHead>
   )
 }

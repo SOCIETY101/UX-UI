@@ -209,8 +209,8 @@ const ticketColumns: DataGridColumn<TicketColumnId>[] = [
 ]
 
 const mobileColumnIds: TicketColumnId[] = [
-  "ticketNumber",
   "subject",
+  "ticketNumber",
   "queueStatus",
   "priority",
 ]
@@ -408,22 +408,27 @@ export function TicketTable({
   const visibleColumns = useMemo(() => {
     if (!useCompactColumns) return ticketColumns
 
-    return ticketColumns
-      .filter((column) => mobileColumnIds.includes(column.id))
+    return mobileColumnIds
+      .map((columnId) =>
+        ticketColumns.find((column) => column.id === columnId)
+      )
+      .filter((column): column is DataGridColumn<TicketColumnId> =>
+        Boolean(column)
+      )
       .map((column) => {
-        if (column.id === "ticketNumber") {
-          return {
-            ...column,
-            defaultWidth: 84,
-            minWidth: 76,
-          }
-        }
-
         if (column.id === "subject") {
           return {
             ...column,
             defaultWidth: 220,
             minWidth: 180,
+          }
+        }
+
+        if (column.id === "ticketNumber") {
+          return {
+            ...column,
+            defaultWidth: 84,
+            minWidth: 76,
           }
         }
 
@@ -511,6 +516,7 @@ export function TicketTable({
         onToolbarPropsChange={onToolbarPropsChange}
         stickySummaryFooter
         fillAvailableHeight
+        mobileCardLayout={useCompactColumns}
         tableContainerClassName="h-full"
         onOpenDrawerCell={(cell) =>
           onOpenTicket?.(

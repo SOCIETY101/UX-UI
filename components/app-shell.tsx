@@ -45,6 +45,7 @@ function getShellDisplayMode(pathname: string): AppShellDisplayMode {
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const isStandaloneRoute = pathname.startsWith("/shipments")
   const activeRoute = getRouteByPathname(pathname)
   const shellDisplayMode = getShellDisplayMode(pathname)
   const isTicketsListPage = pathname === "/tickets"
@@ -62,6 +63,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     },
     [shellDisplayMode]
   )
+
+  if (isStandaloneRoute) {
+    return <>{children}</>
+  }
 
   return (
     <SidebarProvider

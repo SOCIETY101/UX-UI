@@ -40,7 +40,7 @@ export default function RootLayout({
         geist.variable
       )}
     >
-      <body>
+      <body suppressHydrationWarning>
         {process.env.NODE_ENV === "development" ? (
           <Script
             src="https://mcp.figma.com/mcp/html-to-design/capture.js"
