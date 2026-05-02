@@ -1,11 +1,12 @@
-import { IconArrowRight, IconCheck, IconMap, IconTruck, IconClock, IconUsers, IconBarcode, IconAlertCircle } from "@tabler/icons-react"
+import { IconArrowRight, IconCheck, IconMap, IconTruck, IconClock, IconUsers, IconBarcode, IconAlertCircle, IconArrowUpRight } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import "./styles.css"
 
 export const metadata = {
-  title: "LogFlow - Transport Management System",
-  description: "Streamline your logistics operations with a powerful, intuitive transport management platform.",
+  title: "LogFlow - Transport Management System | Modern Fleet Management",
+  description: "Streamline your logistics operations with intelligent routing, real-time tracking, and seamless coordination. Manage shipments effortlessly.",
 }
 
 export default function LandingPage() {
@@ -14,9 +15,17 @@ export default function LandingPage() {
       {/* Navigation */}
       <nav className="sticky top-0 z-40 border-b border-silver bg-white/80 backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-          <div className="text-xl font-semibold text-graphite">LogFlow</div>
+          <div className="flex items-center gap-2">
+            <IconTruck className="size-6 text-ink" />
+            <span className="text-xl font-semibold text-graphite">LogFlow</span>
+          </div>
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#features" className="text-sm text-graphite hover:text-ink">Features</a>
+            <a href="#how-it-works" className="text-sm text-graphite hover:text-ink">How it works</a>
+            <a href="#testimonials" className="text-sm text-graphite hover:text-ink">Testimonials</a>
+          </div>
           <Link href="/shipments">
-            <Button variant="default" size="sm">
+            <Button variant="default" size="sm" className="rounded-full">
               Launch App
             </Button>
           </Link>
@@ -24,63 +33,69 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
+      <section className="mx-auto max-w-7xl px-6 py-20 sm:py-32">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
           {/* Left: Text Content */}
           <div className="space-y-8">
-            <h1 className="text-5xl font-semibold leading-tight text-graphite sm:text-6xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 ring-1 ring-silver">
+              <span className="text-xs font-semibold text-graphite">New: Real-time Route Optimization</span>
+              <IconArrowUpRight className="size-3 text-ink" />
+            </div>
+
+            <h1 className="text-5xl font-semibold leading-tight text-graphite sm:text-6xl lg:text-7xl">
               The better way to manage shipments
             </h1>
 
-            <p className="text-xl leading-relaxed text-slate">
-              Real-time visibility, intelligent routing, and seamless coordination. LogFlow gives you the precision and control needed to optimize every mile.
+            <p className="text-lg leading-relaxed text-slate max-w-lg">
+              Real-time visibility, intelligent routing, and seamless coordination. LogFlow gives you the precision and control needed to optimize every mile of your supply chain.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center pt-4">
               <Link href="/shipments">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto rounded-full bg-ink text-white hover:bg-ink/90"
+                  className="rounded-full bg-ink text-white hover:bg-ink/90"
                 >
                   Get Started
-                  <IconArrowRight className="ml-2 size-5" />
                 </Button>
               </Link>
               <a href="#features">
                 <Button
                   variant="outline"
                   size="lg"
-                  className="w-full sm:w-auto rounded-full border-silver text-graphite hover:bg-paper"
+                  className="rounded-full border-silver text-graphite hover:bg-white"
                 >
-                  Explore Features
+                  See features
                 </Button>
               </a>
             </div>
 
             {/* Trust Badge */}
-            <div className="space-y-3 pt-4">
-              <p className="text-sm text-slate">Trusted by leading logistics companies</p>
-              <div className="flex gap-3">
-                <div className="flex items-center gap-2">
-                  <IconCheck className="size-5 text-graphite" />
-                  <span className="text-sm text-graphite">500+ companies</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <IconCheck className="size-5 text-graphite" />
-                  <span className="text-sm text-graphite">99.9% uptime</span>
-                </div>
+            <div className="space-y-3 pt-6 border-t border-silver">
+              <p className="text-xs text-slate font-semibold uppercase tracking-wide">Trusted by industry leaders</p>
+              <div className="flex flex-wrap gap-4">
+                {["500+ Companies", "99.9% Uptime", "24/7 Support"].map((badge, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <IconCheck className="size-4 text-graphite" />
+                    <span className="text-sm text-graphite">{badge}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Right: Visual Card */}
+          {/* Right: Visual - Dashboard Image Placeholder */}
           <div className="relative">
-            <div className="rounded-3xl bg-white p-8 shadow-[rgba(36,36,36,0.05)_0px_4px_8px_0px] ring-1 ring-silver/30">
-              <div className="aspect-video rounded-2xl bg-gradient-to-br from-paper to-silver flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <IconTruck className="mx-auto size-16 text-graphite" />
-                  <p className="text-graphite font-medium">Real-time tracking dashboard</p>
+            <div className="rounded-3xl bg-white p-2 shadow-[rgba(36,36,36,0.1)_0px_8px_24px_0px] ring-1 ring-silver/30">
+              <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-paper via-white to-silver flex items-center justify-center overflow-hidden">
+                <div className="relative w-full h-full flex items-center justify-center">
+                  {/* IMAGE1: Dashboard mockup */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-ink/5 to-transparent" />
+                  <div className="text-center space-y-4 relative z-10">
+                    <IconTruck className="mx-auto size-20 text-graphite/30" />
+                    <p className="text-graphite/60 font-medium">IMAGE1: Dashboard Preview</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -88,33 +103,26 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="border-t border-silver bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-6xl px-6">
-          {/* Section Header */}
-          <div className="mb-16 space-y-4 text-center">
-            <h2 className="text-4xl font-semibold text-graphite sm:text-5xl">
-              Powerful features for modern logistics
-            </h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate">
-              Everything you need to optimize routes, track shipments, and manage your fleet in one platform.
-            </p>
-          </div>
+      {/* Three Feature Cards Section (Cal.com style) */}
+      <section className="border-t border-silver py-20 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-center text-3xl font-semibold text-graphite mb-16">
+            With us, shipment management is easy
+          </h2>
 
-          {/* Features Grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, i) => (
-              <div
-                key={i}
-                className="group rounded-3xl bg-paper p-8 transition-all hover:shadow-[rgba(36,36,36,0.1)_0px_8px_16px_0px] hover:-translate-y-1"
-              >
-                <div className="mb-4 inline-flex items-center justify-center rounded-2xl bg-white p-3 ring-1 ring-silver/50">
-                  <feature.icon className="size-6 text-graphite" />
+          <div className="grid gap-8 md:grid-cols-3">
+            {mainFeatures.map((feature, i) => (
+              <div key={i} className="rounded-3xl bg-white p-8 ring-1 ring-silver/50 hover:shadow-[rgba(36,36,36,0.08)_0px_8px_16px_0px] transition-all">
+                <div className="mb-6 h-48 rounded-2xl bg-gradient-to-br from-paper to-silver flex items-center justify-center">
+                  <div className="text-center">
+                    <feature.icon className="mx-auto size-12 text-graphite mb-2" />
+                    <p className="text-xs text-slate">IMAGE{i + 2}: {feature.title}</p>
+                  </div>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-graphite">
+                <h3 className="text-xl font-semibold text-graphite mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-slate leading-relaxed">
+                <p className="text-slate text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -124,70 +132,133 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="border-t border-silver py-24 sm:py-32">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="mb-16 text-center text-4xl font-semibold text-graphite sm:text-5xl">
-            How LogFlow works
+      <section id="how-it-works" className="border-t border-silver py-20 sm:py-32 bg-white">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-center text-3xl font-semibold text-graphite mb-4">
+            Your shipment management platform all-in-one
+          </h2>
+          <p className="text-center text-slate max-w-2xl mx-auto mb-16">
+            Everything you need to manage routes, track shipments, and coordinate your fleet from a single, intuitive interface.
+          </p>
+
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
+            {/* Left: Text */}
+            <div className="space-y-6">
+              {detailFeatures.slice(0, 3).map((feature, i) => (
+                <div key={i} className="flex gap-4">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-paper">
+                    <feature.icon className="size-5 text-graphite" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-graphite mb-1">{feature.title}</h3>
+                    <p className="text-sm text-slate">{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Right: Image */}
+            <div className="rounded-3xl bg-white p-2 ring-1 ring-silver/30 shadow-lg">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-paper to-silver flex items-center justify-center">
+                <div className="text-center">
+                  <IconMap className="mx-auto size-16 text-graphite/30 mb-2" />
+                  <p className="text-graphite/60 font-medium text-sm">IMAGE5: Route Optimization</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid Section */}
+      <section className="border-t border-silver py-20 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-center text-3xl font-semibold text-graphite mb-16">
+            And even more
           </h2>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {steps.map((step, i) => (
-              <div key={i} className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-ink text-white font-semibold">
-                    {i + 1}
-                  </div>
-                  <h3 className="text-xl font-semibold text-graphite">
-                    {step.title}
-                  </h3>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {allFeatures.map((feature, i) => (
+              <div key={i} className="rounded-2xl bg-white p-6 ring-1 ring-silver/50 hover:shadow-md transition-all">
+                <div className="mb-4 inline-flex items-center justify-center rounded-lg bg-paper p-2">
+                  <feature.icon className="size-5 text-graphite" />
                 </div>
-                <p className="text-slate leading-relaxed">
-                  {step.description}
-                </p>
+                <h3 className="font-semibold text-graphite mb-2">{feature.title}</h3>
+                <p className="text-xs text-slate">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="border-t border-silver bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid gap-8 md:grid-cols-3">
-            {stats.map((stat, i) => (
-              <div key={i} className="space-y-2 text-center">
-                <p className="text-5xl font-semibold text-ink">
-                  {stat.value}
-                </p>
-                <p className="text-lg text-slate">
-                  {stat.label}
-                </p>
+      {/* Testimonials Section */}
+      <section id="testimonials" className="border-t border-silver bg-white py-20 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-center text-3xl font-semibold text-graphite mb-4">
+            Loved by logistics companies
+          </h2>
+          <p className="text-center text-slate mb-16 max-w-2xl mx-auto">
+            See what industry leaders say about LogFlow
+          </p>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((testimonial, i) => (
+              <div key={i} className="rounded-2xl bg-paper p-6">
+                <div className="flex items-center gap-1 mb-4">
+                  {Array(5).fill(null).map((_, j) => (
+                    <span key={j} className="text-lg">⭐</span>
+                  ))}
+                </div>
+                <p className="text-sm text-graphite mb-4 leading-relaxed">"{testimonial.quote}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="size-8 rounded-full bg-white ring-2 ring-silver" />
+                  <div>
+                    <p className="text-sm font-semibold text-graphite">{testimonial.name}</p>
+                    <p className="text-xs text-slate">{testimonial.company}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="border-t border-silver py-24 sm:py-32">
+      {/* Integrations Section */}
+      <section className="border-t border-silver py-20 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-center text-3xl font-semibold text-graphite mb-4">
+            All your tools synced
+          </h2>
+          <p className="text-center text-slate mb-16">
+            LogFlow integrates with the tools you already use
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-4 lg:grid-cols-6">
+            {integrations.map((integration, i) => (
+              <div key={i} className="flex items-center justify-center rounded-2xl bg-white p-4 ring-1 ring-silver/50 hover:shadow-md transition-all">
+                <div className="size-8 rounded-lg bg-paper flex items-center justify-center">
+                  <span className="text-2xl">{integration.icon}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="border-t border-silver py-20 sm:py-32 bg-white">
         <div className="mx-auto max-w-3xl px-6 text-center space-y-8">
-          <div className="space-y-4">
-            <h2 className="text-4xl font-semibold text-graphite sm:text-5xl">
-              Ready to optimize your operations?
-            </h2>
-            <p className="text-lg text-slate">
-              Join hundreds of logistics companies that trust LogFlow to manage their shipments.
-            </p>
-          </div>
+          <h2 className="text-4xl font-semibold text-graphite sm:text-5xl">
+            Smarter shipping starts here
+          </h2>
+          <p className="text-lg text-slate">
+            Join hundreds of logistics companies optimizing their operations with LogFlow
+          </p>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center sm:items-center">
             <Link href="/shipments">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto rounded-full bg-ink text-white hover:bg-ink/90"
-              >
+              <Button size="lg" className="rounded-full bg-ink text-white hover:bg-ink/90">
                 Start Free Trial
-                <IconArrowRight className="ml-2 size-5" />
               </Button>
             </Link>
             <p className="text-sm text-slate">No credit card required. 14-day free trial.</p>
@@ -196,16 +267,41 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-silver bg-white py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <div className="text-sm text-slate">
-              © 2026 LogFlow. All rights reserved.
+      <footer className="border-t border-silver bg-paper py-12">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-8 pb-8 border-b border-silver">
+            <div className="flex items-center gap-2 mb-4">
+              <IconTruck className="size-5 text-ink" />
+              <span className="font-semibold text-graphite">LogFlow</span>
             </div>
-            <div className="flex gap-6 text-sm text-slate">
-              <a href="#" className="hover:text-graphite transition-colors">Privacy</a>
-              <a href="#" className="hover:text-graphite transition-colors">Terms</a>
-              <a href="#" className="hover:text-graphite transition-colors">Contact</a>
+            <p className="text-sm text-slate max-w-md">
+              The all-in-one platform for modern transport management.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-4 mb-8">
+            {footerSections.map((section, i) => (
+              <div key={i}>
+                <h4 className="font-semibold text-graphite mb-4 text-sm">{section.title}</h4>
+                <ul className="space-y-2">
+                  {section.links.map((link, j) => (
+                    <li key={j}>
+                      <a href="#" className="text-sm text-slate hover:text-graphite transition-colors">
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="border-t border-silver pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-slate">© 2026 LogFlow. All rights reserved.</p>
+            <div className="flex gap-4 text-sm text-slate">
+              <a href="#" className="hover:text-graphite">Privacy</a>
+              <a href="#" className="hover:text-graphite">Terms</a>
+              <a href="#" className="hover:text-graphite">Contact</a>
             </div>
           </div>
         </div>
@@ -214,7 +310,7 @@ export default function LandingPage() {
   )
 }
 
-const features = [
+const mainFeatures = [
   {
     icon: IconMap,
     title: "Intelligent Routing",
@@ -227,52 +323,104 @@ const features = [
   },
   {
     icon: IconClock,
-    title: "On-Time Delivery",
-    description: "Predict delays and optimize schedules to ensure consistent on-time performance.",
+    title: "Predictive Delays",
+    description: "Anticipate and prevent delays before they happen with AI predictions.",
+  },
+]
+
+const detailFeatures = [
+  {
+    icon: IconMap,
+    title: "Smart Route Optimization",
+    description: "AI algorithms calculate the most efficient routes considering traffic, weather, and delivery windows.",
+  },
+  {
+    icon: IconBarcode,
+    title: "Full Shipment Visibility",
+    description: "Track packages from pickup to delivery with real-time updates and proof of delivery.",
   },
   {
     icon: IconUsers,
     title: "Team Coordination",
     description: "Seamless communication between drivers, dispatchers, and management teams.",
   },
-  {
-    icon: IconBarcode,
-    title: "Shipment Visibility",
-    description: "Track packages from pickup to delivery with detailed proof of delivery.",
-  },
+]
+
+const allFeatures = [
   {
     icon: IconAlertCircle,
     title: "Alert Management",
-    description: "Get instant notifications for delays, issues, and important shipment events.",
+    description: "Get instant notifications for delays, issues, and shipment events.",
+  },
+  {
+    icon: IconClock,
+    title: "Scheduled Pickups",
+    description: "Plan and schedule pickups with automated confirmation and reminders.",
+  },
+  {
+    icon: IconUsers,
+    title: "Driver Management",
+    description: "Track driver performance, assign routes, and manage availability.",
+  },
+  {
+    icon: IconBarcode,
+    title: "Barcode Scanning",
+    description: "Mobile app with barcode scanning for quick and accurate shipment tracking.",
+  },
+  {
+    icon: IconMap,
+    title: "Analytics Dashboard",
+    description: "Comprehensive reports on routes, costs, and performance metrics.",
+  },
+  {
+    icon: IconTruck,
+    title: "Fleet Management",
+    description: "Monitor vehicle maintenance, fuel consumption, and compliance.",
   },
 ]
 
-const steps = [
+const testimonials = [
   {
-    title: "Create Shipments",
-    description: "Input shipment details and routes. Our system automatically optimizes the best path for delivery.",
+    quote: "LogFlow has transformed how we manage our shipments. We've reduced delivery times by 25% and improved customer satisfaction dramatically.",
+    name: "Sarah Chen",
+    company: "FastFreight Inc",
   },
   {
-    title: "Assign & Track",
-    description: "Assign shipments to drivers and track progress in real-time with live GPS updates.",
+    quote: "The real-time tracking and routing optimization have saved us thousands in fuel costs. Best investment for our fleet.",
+    name: "Marcus Johnson",
+    company: "Premier Logistics",
   },
   {
-    title: "Deliver & Confirm",
-    description: "Complete deliveries with digital proof, automatic invoicing, and performance analytics.",
+    quote: "Our team loves how intuitive LogFlow is. Setup took minutes, not weeks. Highly recommend to any logistics company.",
+    name: "Elena Rodriguez",
+    company: "Swift Delivery Services",
   },
 ]
 
-const stats = [
+const integrations = [
+  { icon: "📊", name: "Analytics" },
+  { icon: "💳", name: "Payment" },
+  { icon: "📱", name: "Mobile" },
+  { icon: "🗺️", name: "Maps" },
+  { icon: "📧", name: "Email" },
+  { icon: "☁️", name: "Cloud" },
+]
+
+const footerSections = [
   {
-    value: "40%",
-    label: "Average fuel savings",
+    title: "Product",
+    links: ["Features", "Security", "Pricing", "Enterprise"],
   },
   {
-    value: "3.5h",
-    label: "Time saved per route",
+    title: "Developers",
+    links: ["API", "Webhooks", "Status", "Documentation"],
   },
   {
-    value: "98%",
-    label: "On-time delivery rate",
+    title: "Company",
+    links: ["About", "Blog", "Careers", "Press"],
+  },
+  {
+    title: "Resources",
+    links: ["Help", "Community", "Contact", "Partners"],
   },
 ]
