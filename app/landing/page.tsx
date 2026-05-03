@@ -85,19 +85,17 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Right: Visual - Dashboard Image Placeholder */}
+          {/* Right: Visual - Dashboard Image */}
           <div className="relative">
-            <div className="rounded-3xl bg-white p-2 shadow-[rgba(36,36,36,0.1)_0px_8px_24px_0px] ring-1 ring-silver/30">
-              <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-paper via-white to-silver flex items-center justify-center overflow-hidden">
-                <div className="relative w-full h-full flex items-center justify-center">
-                  {/* IMAGE1: Dashboard mockup */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-ink/5 to-transparent" />
-                  <div className="text-center space-y-4 relative z-10">
-                    <IconTruck className="mx-auto size-20 text-graphite/30" />
-                    <p className="text-graphite/60 font-medium">IMAGE1: Dashboard Preview</p>
-                  </div>
-                </div>
-              </div>
+            <div className="rounded-3xl bg-white p-2 shadow-[rgba(36,36,36,0.1)_0px_8px_24px_0px] ring-1 ring-silver/30 overflow-hidden">
+              <Image
+                src="/riq1.png"
+                alt="LogFlow Dashboard - Real-time tracking and shipment management"
+                width={1200}
+                height={900}
+                className="rounded-2xl w-full h-auto"
+                priority
+              />
             </div>
           </div>
         </div>
@@ -111,22 +109,28 @@ export default function LandingPage() {
           </h2>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {mainFeatures.map((feature, i) => (
-              <div key={i} className="rounded-3xl bg-white p-8 ring-1 ring-silver/50 hover:shadow-[rgba(36,36,36,0.08)_0px_8px_16px_0px] transition-all">
-                <div className="mb-6 h-48 rounded-2xl bg-gradient-to-br from-paper to-silver flex items-center justify-center">
-                  <div className="text-center">
-                    <feature.icon className="mx-auto size-12 text-graphite mb-2" />
-                    <p className="text-xs text-slate">IMAGE{i + 2}: {feature.title}</p>
+            {mainFeatures.map((feature, i) => {
+              const imageNum = i + 2; // riq2, riq3, riq4
+              return (
+                <div key={i} className="rounded-3xl bg-white p-8 ring-1 ring-silver/50 hover:shadow-[rgba(36,36,36,0.08)_0px_8px_16px_0px] transition-all overflow-hidden">
+                  <div className="mb-6 rounded-2xl overflow-hidden">
+                    <Image
+                      src={`/riq${imageNum}.png`}
+                      alt={feature.title}
+                      width={800}
+                      height={600}
+                      className="w-full h-auto"
+                    />
                   </div>
+                  <h3 className="text-xl font-semibold text-graphite mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-slate text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-graphite mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-slate text-sm leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -158,13 +162,14 @@ export default function LandingPage() {
             </div>
 
             {/* Right: Image */}
-            <div className="rounded-3xl bg-white p-2 ring-1 ring-silver/30 shadow-lg">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-paper to-silver flex items-center justify-center">
-                <div className="text-center">
-                  <IconMap className="mx-auto size-16 text-graphite/30 mb-2" />
-                  <p className="text-graphite/60 font-medium text-sm">IMAGE5: Route Optimization</p>
-                </div>
-              </div>
+            <div className="rounded-3xl bg-white p-2 ring-1 ring-silver/30 shadow-lg overflow-hidden">
+              <Image
+                src="/riq5.png"
+                alt="Route Management and Optimization"
+                width={1200}
+                height={1200}
+                className="w-full h-auto"
+              />
             </div>
           </div>
         </div>
