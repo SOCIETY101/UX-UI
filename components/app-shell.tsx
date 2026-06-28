@@ -45,7 +45,8 @@ function getShellDisplayMode(pathname: string): AppShellDisplayMode {
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const isStandaloneRoute = pathname.startsWith("/shipments")
+  const isStandaloneRoute =
+    pathname.startsWith("/shipments") || pathname === "/privacy-policy"
   const activeRoute = getRouteByPathname(pathname)
   const shellDisplayMode = getShellDisplayMode(pathname)
   const isTicketsListPage = pathname === "/tickets"

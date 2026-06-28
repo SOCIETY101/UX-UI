@@ -1,4 +1,4 @@
-import { IconArrowRight, IconCheck, IconMap, IconTruck, IconClock, IconUsers, IconBarcode, IconAlertCircle, IconArrowUpRight } from "@tabler/icons-react"
+import { IconCheck, IconMap, IconTruck, IconClock, IconUsers, IconBarcode, IconAlertCircle, IconArrowUpRight } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
@@ -214,7 +214,7 @@ export default function LandingPage() {
                     <span key={j} className="text-lg">⭐</span>
                   ))}
                 </div>
-                <p className="text-sm text-graphite mb-4 leading-relaxed">"{testimonial.quote}"</p>
+                <p className="text-sm text-graphite mb-4 leading-relaxed">&quot;{testimonial.quote}&quot;</p>
                 <div className="flex items-center gap-3">
                   <div className="size-8 rounded-full bg-white ring-2 ring-silver" />
                   <div>
@@ -304,7 +304,7 @@ export default function LandingPage() {
           <div className="border-t border-silver pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-slate">© 2026 LogFlow. All rights reserved.</p>
             <div className="flex gap-4 text-sm text-slate">
-              <a href="#" className="hover:text-graphite">Privacy</a>
+              <Link href="/privacy-policy" className="hover:text-graphite">Privacy</Link>
               <a href="#" className="hover:text-graphite">Terms</a>
               <a href="#" className="hover:text-graphite">Contact</a>
             </div>
